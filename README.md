@@ -1,5 +1,5 @@
 
-# Impressive
+# Barebone Analytics - Tracker Script
 
 ### What does this script do?
 
