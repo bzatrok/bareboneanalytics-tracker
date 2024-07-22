@@ -73,7 +73,7 @@
     }
 
     function initTracking() {
-        const products = document.querySelectorAll('[amberglass-analytics-data-product-id]');
+        const products = document.querySelectorAll('[barebone-analytics-data-product-id]');
         const impressionsLogged = new Set();
 
         const observer = new IntersectionObserver((entries, observer) => {
@@ -81,7 +81,7 @@
 
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const productId = entry.target.getAttribute('amberglass-analytics-data-product-id');
+                    const productId = entry.target.getAttribute('barebone-analytics-data-product-id');
                     if (!impressionsLogged.has(productId)) {
                         visibleProducts.push(productId);
                         impressionsLogged.add(productId);
@@ -107,8 +107,8 @@
             mutations.forEach(mutation => {
                 mutation.addedNodes.forEach(node => {
                     if (node.nodeType === Node.ELEMENT_NODE) {
-                        const productElements = node.querySelectorAll('[amberglass-analytics-data-product-id]');
-                        if (node.hasAttribute('amberglass-analytics-data-product-id')) {
+                        const productElements = node.querySelectorAll('[barebone-analytics-data-product-id]');
+                        if (node.hasAttribute('barebone-analytics-data-product-id')) {
                             productElements.push(node);
                         }
                         productElements.forEach(product => {
@@ -120,8 +120,8 @@
 
                 mutation.removedNodes.forEach(node => {
                     if (node.nodeType === Node.ELEMENT_NODE) {
-                        const productElements = node.querySelectorAll('[amberglass-analytics-data-product-id]');
-                        if (node.hasAttribute('amberglass-analytics-data-product-id')) {
+                        const productElements = node.querySelectorAll('[barebone-analytics-data-product-id]');
+                        if (node.hasAttribute('barebone-analytics-data-product-id')) {
                             productElements.push(node);
                         }
                         productElements.forEach(product => {
@@ -139,7 +139,7 @@
     }
 
     function handleClick(event) {
-        const productId = event.currentTarget.getAttribute('amberglass-analytics-data-product-id');
+        const productId = event.currentTarget.getAttribute('barebone-analytics-data-product-id');
         trackClicks(productId);
     }
 

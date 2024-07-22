@@ -1,5 +1,5 @@
 
-# Amberglass.ProductAnalytics
+# Impressive
 
 ### What does this script do?
 
@@ -18,12 +18,12 @@ The script sends the following data to your backend logging server endpoint:
 - timestamp: The exact time when the event occurred.
 
 ### How can you embed the script?
-Before embedding the script, the front-end of the website you want to track needs to be updated. The script expects the following attribute `amberglass-analytics-data-product-id` to be added to your product cards. This is necessary, otherwise the script will not be able to find the your products & track events.
+Before embedding the script, the front-end of the website you want to track needs to be updated. The script expects the following attribute `amberbarebone-analytics-data-product-id` to be added to your product cards. This is necessary, otherwise the script will not be able to find the your products & track events.
 
 Front-end example:
 
 ```html
-<div amberglass-analytics-data-product-id="12345" class="product">
+<div barebone-analytics-data-product-id="12345" class="product">
     <!-- Product details here -->
 </div>
 ```
