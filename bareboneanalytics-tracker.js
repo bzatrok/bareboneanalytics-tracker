@@ -29,42 +29,37 @@
         return;
     }
 
-    function trackImpressions(productIds) {
-        console.log('Barebone Analytics: Logging impressions:', productIds);
+    function trackEvent(eventType, data) {
+        console.log(`Barebone Analytics: Logging ${eventType}:`, data);
+        const bodyData = {
+            clientId: clientId,
+            userId: getUserId(),
+            eventType: eventType,
+            environment: environment,
+            timestamp: new Date().toISOString()
+        };
+        
+        if (eventType === 'impression')
+            bodyData.productIds = data;
+        else if (eventType === 'click')
+            bodyData.productIds = [data];
+    
         fetch(logUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                clientId: clientId,
-                userId: getUserId(),
-                eventType: 'impression',
-                productIds: productIds,
-                environment: environment,
-                timestamp: new Date().toISOString()
-            })
+            body: JSON.stringify(bodyData)
         })
-        .catch(error => console.error('Barebone Analytics: Error logging impression:', error));
+        .catch(error => console.error(`Barebone Analytics: Error logging ${eventType}:`, error));
     }
-
+    
+    function trackImpressions(productIds) {
+        trackEvent('impression', productIds);
+    }
+    
     function trackClicks(productId) {
-        console.log('Barebone Analytics: Logging click:', productId);
-        fetch(logUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                clientId: clientId,
-                userId: getUserId(),
-                eventType: 'click',
-                productId: productId,
-                environment: environment,
-                timestamp: new Date().toISOString()
-            })
-        })
-        .catch(error => console.error('Barebone Analytics: Error logging click:', error));
+        trackEvent('click', productId);
     }
 
     function getUserId() {
